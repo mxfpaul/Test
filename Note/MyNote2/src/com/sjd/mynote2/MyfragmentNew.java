@@ -1,6 +1,5 @@
 package com.sjd.mynote2;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -74,14 +73,7 @@ public class MyfragmentNew extends Fragment {
 				mnote.setNote_title(title);
 				mnote.setNote_content(content);
 
-				String sql = "insert into Note(title,content)values(?,?)";
-				SQLiteDatabase db = new MySQLOpenHelper(getActivity())
-						.getWritableDatabase();
-				db.execSQL(
-						sql,
-						new Object[] { mnote.getNote_title(),
-								mnote.getNote_content() });
-				db.close();
+				new MyNoteManager().newNote(mnote, getActivity());
 
 				Toast.makeText(getActivity(), "新建成功", Toast.LENGTH_SHORT)
 						.show();

@@ -100,20 +100,14 @@ public class MyfragmentDelete extends Fragment {
 	
 	private void Delete(){
 		//确认要删除的Note
-		ArrayList<Note> note = new ArrayList<Note>();
+		ArrayList<Note> notes = new ArrayList<Note>();
 		for(int i=0;i<mdata2.size();i++){
 			if(mlistview.isItemChecked(i)==true){
-				note.add(mdata2.get(i));
-//				Toast.makeText(getActivity(), ""+mdata2.get(i).getNote_id(), Toast.LENGTH_SHORT).show();
+				notes.add(mdata2.get(i));
 			}
 		}
 		//删除选中的Note
-		SQLiteDatabase db = new MySQLOpenHelper(getActivity()).getWritableDatabase();
-		String sql = "DELETE FROM Note WHERE id = ?";
-		for(int i=0;i<note.size();i++){
-			db.execSQL(sql, new Object[]{note.get(i).getNote_id()});
-		}
-		db.close();
+		new MyNoteManager().deleteNote(notes, getActivity());
 		Toast.makeText(getActivity(), "删除成功", Toast.LENGTH_SHORT).show();
 
 	}

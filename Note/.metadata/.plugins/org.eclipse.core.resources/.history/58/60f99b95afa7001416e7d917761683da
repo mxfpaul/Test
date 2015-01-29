@@ -1,0 +1,9 @@
+package com.sjd.mynote2;
+
+public class NoteManager {
+	
+	public void newNote(){
+		
+	}
+	
+}

@@ -1,6 +1,5 @@
 package com.sjd.mynote2;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,8 +8,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.InputMethodManager;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -99,20 +98,14 @@ public class MyfragmentView extends Fragment {
 	}
 
 	private void save() {
-		
+
 		CloseInput();
 		String title = medit_text1.getText().toString();
 		String content = medit_text2.getText().toString();
 		mnote.setNote_title(title);
 		mnote.setNote_content(content);
 
-		SQLiteDatabase db = new MySQLOpenHelper(getActivity())
-				.getWritableDatabase();
-		String sql = "UPDATE Note SET title = ?,content = ?WHERE id = ?";
-		db.execSQL(sql,
-				new Object[] { mnote.getNote_title(), mnote.getNote_content(),
-						mnote.getNote_id() });
-		db.close();
+		new MyNoteManager().saveNote(mnote, getActivity());
 		Toast.makeText(getActivity(), "修改成功", Toast.LENGTH_SHORT).show();
 	}
 
@@ -122,21 +115,15 @@ public class MyfragmentView extends Fragment {
 		button_modify.setTag(1);
 		medit_text1.setFocusable(false);
 		medit_text1.setFocusableInTouchMode(false);
-		// 为了能将键盘退出
-		medit_text1.setEnabled(false);
-		medit_text1.setEnabled(true);
-
-		medit_text2.setFocusable(false);
-		medit_text2.setFocusableInTouchMode(false);
-		medit_text2.setEnabled(false);
-		medit_text2.setEnabled(true);
+		CloseInput();
 	}
 
-	//关闭软键盘
-	private void CloseInput(){
+	// 关闭软键盘
+	private void CloseInput() {
 		getActivity();
-		InputMethodManager imm =(InputMethodManager)getActivity().getSystemService(FragmentActivity.INPUT_METHOD_SERVICE);  
+		InputMethodManager imm = (InputMethodManager) getActivity()
+				.getSystemService(FragmentActivity.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(medit_text1.getWindowToken(), 0);
-		imm.hideSoftInputFromWindow(medit_text2.getWindowToken(), 0);  
+		imm.hideSoftInputFromWindow(medit_text2.getWindowToken(), 0);
 	}
 }

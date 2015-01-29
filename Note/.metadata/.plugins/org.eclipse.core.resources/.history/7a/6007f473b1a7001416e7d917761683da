@@ -1,0 +1,23 @@
+package com.sjd.mynote2;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
+public class MyNoteManager {
+	
+	public void newNote(Note note,Context context){
+		String sql = "insert into Note(title,content)values(?,?)";
+		SQLiteDatabase db = new MySQLOpenHelper(context)
+				.getWritableDatabase();
+		db.execSQL(
+				sql,
+				new Object[] { note.getNote_title(),
+						note.getNote_content() });
+		db.close();
+	}
+	
+	public void deleteNote(ArrayList<Note> notes,Context context){
+		
+	}
+	
+}
