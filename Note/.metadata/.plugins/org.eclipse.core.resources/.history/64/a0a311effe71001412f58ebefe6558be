@@ -1,0 +1,8 @@
+package com.sjd.mynote2;
+
+public class Note {
+	private String mNote_title;
+	private String mNote_content;
+	
+	
+}

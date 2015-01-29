@@ -1,0 +1,70 @@
+package com.sjd.mynote2;
+
+import java.util.ArrayList;
+
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+public class MyfragmentSearch extends Fragment {
+	private Button mbutton_search;
+	private EditText medit_text1;
+	private ArrayList<Note> mdata;
+	private View view;
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater,
+			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		view = inflater.inflate(R.layout.search, container,false);
+		Init();
+		return view;
+	}
+
+	private void Init(){
+		mdata = new ArrayList<Note>(); 
+		ListenButton_search();
+		
+	}
+	
+	private void ListenButton_search(){
+		mbutton_search = (Button)view.findViewById(R.id.search_button_search);
+		mbutton_search.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+	
+	private String[] get_Search_title(){
+		medit_text1 = (EditText)view.findViewById(R.id.search_edittext_1);
+		
+		return new String[]{medit_text1.getText().toString()};
+	}
+	
+	private void Search_title(){
+		SQLiteDatabase db = new MySQLOpenHelper(getActivity()).getReadableDatabase();
+		String sql = "SELECT * FROM Note WHERE title like ? ";
+		Cursor cursor = db.rawQuery(sql, get_Search_title());
+		while(cursor.moveToNext()){
+			Note note = new Note();
+			note.setNote_id(cursor.getInt(0));
+			note.setNote_title(cursor.getString(1));
+			note.setNote_content(cursor.getString(2));
+			mdata.add(note);
+		}
+		
+	}
+	
+}

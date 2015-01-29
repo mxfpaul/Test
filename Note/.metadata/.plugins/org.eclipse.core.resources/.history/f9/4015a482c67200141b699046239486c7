@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MyNote2</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="home_button_text1">编辑</string>
+    <string name="home_button_text2">新建</string>
+    <string name="home_textview_text">全部笔记</string>
+    <string name="new_button_text1">返回</string>
+    <string name="new_button_text2">完成</string>
+    <string name="new_textview_text">新笔记</string>
+    <string name="new_edittext_text1">请输入标题</string><string name="new_edittext_text2">请输入内容</string><string name="view_button_text1">返回</string>
+    <string name="view_button_text2">更改</string>
+    <string name="view_textview_text">笔记详情</string>
+    <string name="delete_button_text1">返回</string>
+    <string name="delete_button_text2">删除</string>
+    
+    
+
+</resources>

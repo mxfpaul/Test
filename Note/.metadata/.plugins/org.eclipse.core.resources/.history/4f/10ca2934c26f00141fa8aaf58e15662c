@@ -1,0 +1,7 @@
+package com.sjd.mynote2;
+
+import android.support.v4.app.Fragment;
+
+public class Myfragment2 extends Fragment {
+
+}

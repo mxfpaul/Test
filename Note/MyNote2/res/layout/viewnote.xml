@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/view_button_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/view_button_text1" />
+
+        <TextView
+            android:id="@+id/view_textview_all"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/view_textview_text"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/view_button_modify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/view_button_text2" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/view_edittext_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="14"
+        android:gravity="top"
+        android:hint="@string/new_edittext_text1"
+        android:lines="1" />
+
+    <EditText
+        android:id="@+id/view_edittext_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="14"
+        android:gravity="top"
+        android:hint="@string/new_edittext_text2"
+        android:lines="10" />
+
+</LinearLayout>

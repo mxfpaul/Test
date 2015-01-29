@@ -1,0 +1,67 @@
+package com.sjd.mynote2;
+
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+public class MyfragmentNew extends Fragment {
+
+	private Button mbutton_back;
+	private Button mbutton_ok;
+	private Note mnote;
+	private EditText medit_text;
+	private View view;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater,
+			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		view = inflater.inflate(R.layout.newnote, container, false);
+		
+		//note的准备工作
+		medit_text = (EditText)view.findViewById(R.id.new_edittext_content);
+		
+		//按钮：返回
+		mbutton_back = (Button) view.findViewById(R.id.new_button_back);
+		mbutton_back.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				android.support.v4.app.FragmentTransaction ft = getFragmentManager()
+						.beginTransaction();
+				ft.replace(R.id.fragment_container, new MyfragmentHome());
+				ft.addToBackStack(null);
+				ft.commit();
+			}
+		});
+
+		//按钮：完成
+		mbutton_ok = (Button) view.findViewById(R.id.new_button_ok);
+		mbutton_ok.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				//test
+				String content = medit_text.getText().toString();
+				
+				mnote.setNote_content(content); 
+
+				String sql = "insert into Note(content)values(?)";
+				SQLiteDatabase db = new MySQLOpenHelper(getActivity().getBaseContext()).getWritableDatabase();
+				db.execSQL(sql,new Object[]{mnote.getNote_content()});
+				db.close();
+				
+			}
+		});
+
+		return view;
+	}
+
+}

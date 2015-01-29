@@ -1,0 +1,22 @@
+package com.sjd.mynote2;
+
+public class Note {
+	private String mNote_title;
+	private String mNote_content;
+	
+	
+	public String getNote_title() {
+		return mNote_title;
+	}
+	public void setNote_title(String note_title) {
+		mNote_title = note_title;
+	}
+	public String getNote_content() {
+		return mNote_content;
+	}
+	public void setNote_content(String note_content) {
+		mNote_content = note_content;
+	}
+	
+	
+}
