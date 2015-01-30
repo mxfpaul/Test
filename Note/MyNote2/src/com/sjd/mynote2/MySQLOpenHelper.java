@@ -19,7 +19,7 @@ public class MySQLOpenHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		String sql = "CREATE TABLE Note(id integer primary key autoincrement,title varchar(20),content text)";
+		String sql = "CREATE TABLE Note(id integer primary key autoincrement,Createdate varchar(20),title varchar(20),content text)";
 		db.execSQL(sql);
 		
 

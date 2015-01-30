@@ -12,7 +12,6 @@
 <fullyQualifiedTypeName name="android.widget.ListView"/>
 <fullyQualifiedTypeName name="android.widget.Adapter"/>
 <fullyQualifiedTypeName name="android.widget.ArrayAdapter"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="android.widget.AdapterView.OnItemClickListener"/>
 <fullyQualifiedTypeName name="com.sjd.mynote2.MyfragmentView"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
@@ -34,4 +33,9 @@
 <fullyQualifiedTypeName name="com.sjd.mynote2.MySQLOpenHelper"/>
 <fullyQualifiedTypeName name="android.database.Cursor"/>
 <fullyQualifiedTypeName name="android.widget.Toast"/>
+<fullyQualifiedTypeName name="android.content.Context"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.sjd.mynote2.MyNoteManager"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="android.text.format.Time"/>
 </qualifiedTypeNameHistroy>

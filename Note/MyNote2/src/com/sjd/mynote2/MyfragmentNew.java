@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -59,20 +60,24 @@ public class MyfragmentNew extends Fragment {
 	}
 
 	private void ListenButton_ok() {
-		
+
 		mbutton_ok = (Button) view.findViewById(R.id.new_button_ok);
 		mbutton_ok.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// test
+
 				CloseInput();
 				String title = medit_text1.getText().toString();
 				String content = medit_text2.getText().toString();
-
+				Time d = new Time();
+				d.setToNow();
+				
 				mnote.setNote_title(title);
 				mnote.setNote_content(content);
-
+				mnote.setNote_Createdate(d.month+1, d.monthDay, d.hour, d.minute);
+				
 				new MyNoteManager().newNote(mnote, getActivity());
 
 				Toast.makeText(getActivity(), "新建成功", Toast.LENGTH_SHORT)
@@ -84,15 +89,19 @@ public class MyfragmentNew extends Fragment {
 				ft.commit();
 			}
 		});
-		
-		
+
 	}
 
-	//关闭软键盘
-	private void CloseInput(){
+	// 关闭软键盘
+	private void CloseInput() {
 		getActivity();
-		InputMethodManager imm =(InputMethodManager)getActivity().getSystemService(FragmentActivity.INPUT_METHOD_SERVICE);  
+		InputMethodManager imm = (InputMethodManager) getActivity()
+				.getSystemService(FragmentActivity.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(medit_text1.getWindowToken(), 0);
-		imm.hideSoftInputFromWindow(medit_text2.getWindowToken(), 0);  
+		imm.hideSoftInputFromWindow(medit_text2.getWindowToken(), 0);
 	}
+	
+	
+	
+	
 }

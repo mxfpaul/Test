@@ -1,0 +1,15 @@
+package com.sjd.mynote2;
+
+import android.text.format.Time;
+
+public class Test {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		String mDate = new Time().toString();
+		System.out.println(mDate);
+	}
+
+}

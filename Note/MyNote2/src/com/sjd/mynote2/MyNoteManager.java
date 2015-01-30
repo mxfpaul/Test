@@ -9,10 +9,10 @@ import android.database.sqlite.SQLiteDatabase;
 public class MyNoteManager {
 
 	public void newNote(Note note, Context context) {
-		String sql = "insert into Note(title,content)values(?,?)";
+		String sql = "insert into Note(Createdate,title,content)values(?,?,?)";
 		SQLiteDatabase db = new MySQLOpenHelper(context).getWritableDatabase();
 		db.execSQL(sql,
-				new Object[] { note.getNote_title(), note.getNote_content() });
+				new Object[] { note.getNote_Createdate(),note.getNote_title(), note.getNote_content() });
 		db.close();
 	}
 

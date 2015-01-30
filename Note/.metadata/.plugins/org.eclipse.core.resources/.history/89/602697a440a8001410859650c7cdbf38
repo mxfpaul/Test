@@ -1,0 +1,58 @@
+package com.sjd.mynote2;
+
+import java.util.ArrayList;
+
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+public class MyNoteManager {
+
+	public void newNote(Note note, Context context) {
+		String sql = "insert into Note(date,title,content)values(?,?,?)";
+		SQLiteDatabase db = new MySQLOpenHelper(context).getWritableDatabase();
+		db.execSQL(sql,
+				new Object[] { note.getNote_date(),note.getNote_title(), note.getNote_content() });
+		db.close();
+	}
+
+	public void deleteNote(ArrayList<Note> notes, Context context) {
+		SQLiteDatabase db = new MySQLOpenHelper(context).getWritableDatabase();
+		String sql = "DELETE FROM Note WHERE id = ?";
+		for (int i = 0; i < notes.size(); i++) {
+			db.execSQL(sql, new Object[] { notes.get(i).getNote_id() });
+		}
+		db.close();
+	}
+
+	public ArrayList<Note> searchNote(String searchTitle, Context context) {
+		ArrayList<Note> notes = new ArrayList<Note>();
+
+		SQLiteDatabase db = new MySQLOpenHelper(context).getReadableDatabase();
+		String sql = "SELECT * FROM Note WHERE title like ? ";
+
+		Cursor cursor = db.rawQuery(sql, new String[] { searchTitle });
+
+		while (cursor.moveToNext()) {
+			Note note = new Note();
+			note.setNote_id(cursor.getInt(0));
+			note.setNote_title(cursor.getString(1));
+			note.setNote_content(cursor.getString(2));
+			notes.add(note);
+		}
+		cursor.close();
+		db.close();
+		return notes;
+	}
+
+	public void saveNote(Note note, Context context) {
+		SQLiteDatabase db = new MySQLOpenHelper(context)
+				.getWritableDatabase();
+		String sql = "UPDATE Note SET title = ?,content = ?WHERE id = ?";
+		db.execSQL(sql,
+				new Object[] { note.getNote_title(), note.getNote_content(),
+						note.getNote_id() });
+		db.close();
+	}
+
+}
